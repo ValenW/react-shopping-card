@@ -1,16 +1,20 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
-import { reducer as ProductReducer } from "./product/reducer";
 import createSagaMiddleware from "redux-saga";
-import productSaga from "./product/middleware";
 import { all } from "redux-saga/effects";
+
+import productSaga from "./product/middleware";
+import cartSaga from "./cart/middleware";
+import { reducer as ProductReducer } from "./product/reducer";
+import { reducer as CartReducer } from "./cart/reducer";
+
 
 const saga = createSagaMiddleware();
 
 export const store = createStore(
-  combineReducers({ products: ProductReducer }),
+  combineReducers({ products: ProductReducer, cart: CartReducer }),
   applyMiddleware(saga)
 );
 
 saga.run(function* () {
-  yield all([productSaga()]);
+  yield all([productSaga(), cartSaga()]);
 });

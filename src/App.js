@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Card from "./components/card";
+import Cart from "./components/cart";
 import Product from "./components/product";
 
 export default class App extends Component {
@@ -7,7 +7,7 @@ export default class App extends Component {
     return (
       <div>
         <Product />
-        <Card />
+        <Cart />
       </div>
     );
   }
