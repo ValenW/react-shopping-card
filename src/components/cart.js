@@ -11,8 +11,16 @@ class Card extends Component {
     }, 0);
   }
 
-  changeCount(count, id) {
-    console.log(count, id);
+  changeCount(event, id) {
+    this.props.changeCount({ cid: id, count: event.target.value });
+  }
+
+  deleteProd(id) {
+    this.props.deleteProduct(id);
+  }
+
+  componentDidMount() {
+    this.props.loadCart();
   }
 
   render() {
@@ -31,7 +39,7 @@ class Card extends Component {
                 <img
                   alt=""
                   className="cart-item-image"
-                  src={p.thumbnail}
+                  src={`http://localhost:3005${p.thumbnail}`}
                   width="100"
                   height="100"
                 />
@@ -43,9 +51,13 @@ class Card extends Component {
                   className="cart-quantity-input"
                   type="number"
                   value={p.count}
-                  onChange={(v) => this.changeCount(v, p.id)}
+                  min="1"
+                  onChange={(e) => this.changeCount(e, p.id)}
                 />
-                <button className="btn btn-danger" type="button">
+                <button
+                  className="btn btn-danger"
+                  type="button"
+                  onClick={() => this.deleteProd(p.id)}>
                   删除
                 </button>
               </div>
