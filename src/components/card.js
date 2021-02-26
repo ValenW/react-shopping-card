@@ -1,12 +1,6 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import * as actions from "../store/product/action";
 
 class Card extends Component {
-  componentDidMount() {
-    this.props.loadProducts();
-  }
   render() {
     return (
       <section className="container content-section">
@@ -69,10 +63,4 @@ class Card extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  products: state.products,
-});
-
-const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(Card);
+export default Card;
