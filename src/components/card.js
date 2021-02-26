@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
-export default class Card extends Component {
+class Card extends Component {
   render() {
     return (
       <section className="container content-section">
@@ -62,3 +63,9 @@ export default class Card extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  products: state.products,
+});
+
+export default connect(mapStateToProps)(Card);
