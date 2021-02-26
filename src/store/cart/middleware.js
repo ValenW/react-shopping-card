@@ -4,12 +4,11 @@ import { addToCart, addToLocalCart } from "./action";
 
 const cartAPI = "http://localhost:3005/cart/add";
 
-function* addToCartSage(action) {
+function* addToCartSaga(action) {
   const { data } = yield axios.post(cartAPI, { gid: action.payload.id });
-  console.log(data);
   yield put(addToLocalCart(data));
 }
 
-export default function* cartStage() {
-  yield takeEvery(addToCart, addToCartSage);
+export default function* cartSaga() {
+  yield takeEvery(addToCart, addToCartSaga);
 }
